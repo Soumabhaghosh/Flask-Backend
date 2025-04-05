@@ -6,6 +6,10 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 from datetime import datetime
 import datetime as dt
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Initialize the Flask app
 app = Flask(__name__)
@@ -472,5 +476,6 @@ def accountDashboard(account_name):
     return jsonify({'status': 'success', 'users': user_list,'kpi1':[unique_project],'kpi2':[projectwise_distance],'kpi3':[projectwise_emission],'kpi4':[modewise_emission],'kpi5':[modewise_distance],'kpi6':[monthwise_emission]}), 200
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
+    # print(os.environ.get("PORT"))
+    port = int(os.environ.get("PORT"))
     app.run(debug=True,port=port)
